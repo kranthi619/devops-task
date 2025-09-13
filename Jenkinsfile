@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')  // Jenkins credentials ID
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = "kranthi619/devops-task"
     }
 
@@ -34,18 +34,17 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo "Manual deployment step for now. Will deploy container using ECS later."
+                echo "Manual deployment step for now. ECS deployment can be automated later."
             }
         }
     }
 
     post {
         success {
-            echo "Build & Push Successful!"
+            echo "Pipeline completed successfully!"
         }
         failure {
-            echo "Build Failed!"
+            echo "Pipeline failed!"
         }
     }
 }
-
