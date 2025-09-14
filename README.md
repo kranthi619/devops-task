@@ -1,6 +1,4 @@
-
-
- 🚀 ECS Fargate Deployment – DevOps Task
+# 🚀 ECS Fargate Deployment – DevOps Task
 
 This repository documents how we built, pushed, and deployed a Dockerized application to **Amazon ECS (Fargate)** using **Jenkins CI/CD**.  
 It includes **all steps, configurations, and commands** so anyone can reproduce this setup.
@@ -8,7 +6,8 @@ It includes **all steps, configurations, and commands** so anyone can reproduce 
 ---
 
 ## 📌 Architecture Overview
-![Uploading DevOpd-Task-Archiotecure.png…]()
+
+![Architecture Diagram](architecture-diagram.png) <img width="1536" height="1024" alt="DevOpd-Task-Archiotecure" src="https://github.com/user-attachments/assets/471b5786-a489-4792-85f2-eaf03ffabe99" />
 
 
 **Components Used:**
