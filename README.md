@@ -1,4 +1,4 @@
-![Uploading DevOpd-Task-Archiotecure.png…]()
+
 
  🚀 ECS Fargate Deployment – DevOps Task
 
@@ -8,7 +8,7 @@ It includes **all steps, configurations, and commands** so anyone can reproduce 
 ---
 
 ## 📌 Architecture Overview
-![Uploading ChatGPT Image Sep 14, 2025, 04_55_39 PM.png…]()
+![Uploading DevOpd-Task-Archiotecure.png…]()
 
 
 **Components Used:**
