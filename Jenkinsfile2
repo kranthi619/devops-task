@@ -2,49 +2,52 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        IMAGE_NAME = "kranthi619/devops-task"
+        AWS_REGION = "us-east-1"
+        ECR_REPO = "338034595180.dkr.ecr.us-east-1.amazonaws.com/devops-task"
+        IMAGE_TAG = "latest"
+        CLUSTER = "task-cluster"
+        SERVICE = "devops-task-service"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                checkout scm
+                git branch: 'dev', url: 'https://github.com/kranthi619/devops-task.git'
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                sh 'npm install'
+                sh '''
+                echo "Building Docker image..."
+                docker build -t $ECR_REPO:$IMAGE_TAG .
+                '''
             }
         }
 
-        stage('Dockerize') {
+        stage('Login to ECR') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO
+                '''
             }
         }
 
-        stage('Docker Login & Push') {
+        stage('Push Image to ECR') {
             steps {
-                sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
-                sh "docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
+                sh '''
+                docker push $ECR_REPO:$IMAGE_TAG
+                '''
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to ECS') {
             steps {
-                echo "Manual deployment step for now. ECS deployment can be automated later."
+                sh '''
+                echo "Forcing ECS service to deploy latest image..."
+                aws ecs update-service --cluster $CLUSTER --service $SERVICE --force-new-deployment --region $AWS_REGION
+                '''
             }
-        }
-    }
-
-    post {
-        success {
-            echo "✅ Pipeline completed successfully!"
-        }
-        failure {
-            echo "❌ Pipeline failed!"
         }
     }
 }
