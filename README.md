@@ -1,4 +1,4 @@
-# 🚀 ECS Fargate Deployment – DevOps Task
+<img width="1536" height="1024" alt="ChatGPT Image Sep 14, 2025, 04_55_39 PM" src="https://github.com/user-attachments/assets/26312040-1e87-446b-914f-55bb250c1d2e" /># 🚀 ECS Fargate Deployment – DevOps Task
 
 This repository documents how we built, pushed, and deployed a Dockerized application to **Amazon ECS (Fargate)** using **Jenkins CI/CD**.  
 It includes **all steps, configurations, and commands** so anyone can reproduce this setup.
@@ -6,7 +6,6 @@ It includes **all steps, configurations, and commands** so anyone can reproduce 
 ---
 
 ## 📌 Architecture Overview
-
 ![Uploading ChatGPT Image Sep 14, 2025, 04_55_39 PM.png…]()
 
 
